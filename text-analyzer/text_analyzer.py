@@ -1,5 +1,6 @@
 import re
 from collections import Counter
+from functools import cached_property
 from typing import Iterator, List, Dict
 from datetime import datetime
 
@@ -11,7 +12,7 @@ class TextAnalyzer:
             self.sentences = re.findall(r'\b[^.!?]+[.!?]+', self.text)
             self.words = [str(word).lower() for word in re.findall(r'\w+', self.text)]
 
-    @property
+    @cached_property
     def characters_frequency(self) -> Dict[str, int]:
         frequency = Counter(self.text)
         return dict(sorted(frequency.items(), key=lambda x: x[1], reverse=True))
@@ -38,7 +39,7 @@ class TextAnalyzer:
 
         return most_common
 
-    @property
+    @cached_property
     def palindrome_words(self) -> List[str]:
         return [word for word in self.words if self.is_palindrome(word)]
 
