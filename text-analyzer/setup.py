@@ -7,6 +7,6 @@ setup(
     author='Bohdan Krupa',
     author_email='bodya.save.dev@gmail.com',
     url='',
-    packages=['text-analyzer'],
-    install_requires=['requests'],
+    packages=['text_analyzer'],
+    install_requires=['requests', 'sqlalchemy', 'psycopg2', 'python-dotenv'],
 )
