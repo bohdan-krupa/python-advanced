@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi import Depends, FastAPI, Response, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_pagination import Page, add_pagination
 
@@ -28,7 +28,10 @@ async def on_startup() -> None:
 
 
 @app.post("/contacts", response_model=ContactOut)
-async def create_contact(contact: ContactIn, db: AsyncSession = Depends(get_db)):
+async def create_contact(
+    contact: ContactIn, response: Response, db: AsyncSession = Depends(get_db)
+):
+    response.status_code = status.HTTP_201_CREATED
     return await Contact.create(contact, db)
 
 
@@ -62,7 +65,7 @@ async def update_contact(
 @app.delete("/contacts/{contact_id}", response_model=str)
 async def delete_contacts(contact_id: int, db: AsyncSession = Depends(get_db)):
     await Contact.delete(contact_id, db)
-    return "Success"
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 add_pagination(app)
