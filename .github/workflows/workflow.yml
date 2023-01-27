@@ -54,4 +54,4 @@ jobs:
             --application-name Dev-deployment \
             --deployment-group-name Dev-deployment-group \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+            --github-location repository=${{ github.repository }}/contact-book,commitId=${{ github.sha }}
