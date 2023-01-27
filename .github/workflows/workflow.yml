@@ -9,10 +9,6 @@ jobs:
   continuous-integration:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: contact-book
-
     steps:
       - uses: actions/checkout@v2
 
@@ -50,4 +46,4 @@ jobs:
             --application-name Dev-deployment \
             --deployment-group-name Dev-deployment-group \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --github-location repository=${{ github.repository }}/contact-book,commitId=${{ github.sha }}
+            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
