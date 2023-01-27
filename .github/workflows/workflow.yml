@@ -34,10 +34,6 @@ jobs:
     needs: [continuous-integration]
     # if: github.ref == 'refs/heads/main'
 
-    defaults:
-      run:
-        working-directory: contact-book
-
     steps:
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@master
